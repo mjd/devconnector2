@@ -4,8 +4,10 @@ const path = require('path');
 
 const app = express();
 
+const { PORT, MONGO_URI } = require('./config')
+
 // Connect Database
-connectDB();
+connectDB(MONGO_URI);
 
 // Init Middleware
 app.use(express.json());
@@ -26,6 +28,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const port = PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));
